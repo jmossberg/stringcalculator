@@ -1,15 +1,17 @@
 #include "gmock/gmock.h"
 #include "StringCalculatorClass.h"
 
-TEST(StringCalculatorClassTest, CanInstantiateStringCalculatorClass)
+TEST(StringCalculatorClassTest, CanCallAddWithEmptyString)
 {
-	//Exercise
-	StringCalculatorClass * stringCalculatorClass_p = 0;
-	stringCalculatorClass_p = new StringCalculatorClass();
+	//Setup
+	StringCalculatorClass * stringCalculatorClass_p = new StringCalculatorClass();
 
 	//Exercise
-	ASSERT_FALSE(0 == stringCalculatorClass_p);
+	int result = stringCalculatorClass_p->add("");
 
-	//Tear down
+	//Exercise
+	ASSERT_TRUE(0 == result);
+
+	//Teardown
 	delete stringCalculatorClass_p;
 }
