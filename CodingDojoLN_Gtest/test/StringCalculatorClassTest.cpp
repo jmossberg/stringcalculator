@@ -10,7 +10,7 @@ TEST(StringCalculatorClassTest, CanCallAddWithEmptyString)
 	int result = stringCalculatorClass_p->add("");
 
 	//Exercise
-	ASSERT_TRUE(0 == result);
+	ASSERT_EQ(0, result);
 
 	//Teardown
 	delete stringCalculatorClass_p;
