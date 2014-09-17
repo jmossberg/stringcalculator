@@ -1,5 +1,6 @@
 #include "gmock/gmock.h"
 #include "StringCalculatorClass.h"
+#include <sstream>
 
 class StringCalculatorClassTest : public ::testing::Test {
 public:
@@ -43,4 +44,22 @@ TEST_F(StringCalculatorClassTest, CanCallAddWithTwoNumbersInString)
 
 	//Exercise
 	ASSERT_EQ(3, result);
+}
+
+TEST_F(StringCalculatorClassTest, StringStreamExperiment)
+{
+
+	std::stringstream ss;
+
+	ss << "123,456";
+
+	int number1;
+	int number2;
+	char delim1;
+
+	ss >> number1 >> delim1 >> number2;
+
+	//Exercise
+	ASSERT_EQ(123, number1);
+	ASSERT_EQ(456, number2);
 }
