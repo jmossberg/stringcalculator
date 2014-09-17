@@ -35,3 +35,12 @@ TEST_F(StringCalculatorClassTest, CanCallAddWithOneNumberInString)
 	//Exercise
 	ASSERT_EQ(1, result);
 }
+
+TEST_F(StringCalculatorClassTest, CanCallAddWithTwoNumbersInString)
+{
+	//Exercise
+	int result = myStringCalculatorClass_p->add("1,2");
+
+	//Exercise
+	ASSERT_EQ(3, result);
+}
