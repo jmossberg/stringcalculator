@@ -46,6 +46,15 @@ TEST_F(StringCalculatorClassTest, CanCallAddWithTwoNumbersInString)
 	ASSERT_EQ(3, result);
 }
 
+TEST_F(StringCalculatorClassTest, CanCallAddWithEightNumbersInString)
+{
+	//Exercise
+	int result = myStringCalculatorClass_p->add("1,2,3,4,5,6,7,8");
+
+	//Exercise
+	ASSERT_EQ(36, result);
+}
+
 TEST_F(StringCalculatorClassTest, StringStreamExperiment)
 {
 
