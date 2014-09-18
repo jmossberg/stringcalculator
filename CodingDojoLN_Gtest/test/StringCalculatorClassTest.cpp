@@ -52,6 +52,7 @@ TEST_F(StringCalculatorClassTest, StringStreamExperiment)
 	std::stringstream ss;
 
 	ss << "123,456";
+	//ss << "123";
 
 	int number1;
 	int number2;
@@ -60,6 +61,7 @@ TEST_F(StringCalculatorClassTest, StringStreamExperiment)
 	ss >> number1 >> delim1 >> number2;
 
 	//Exercise
+	ASSERT_EQ(true, ss.eof());
 	ASSERT_EQ(123, number1);
 	ASSERT_EQ(456, number2);
 }

@@ -25,20 +25,38 @@ public:
 };
 
 
+//int StringCalculatorClass::add(std::string newString) {
+//	int number = 0;
+//	stringstream_trace ss;
+//	char TEMP_BUF[50];
+//
+//	//Copy string to stringstream
+//	ss << newString;
+//
+//	const int MAX_LENGTH_OF_NUMBER = 6;
+//	const char DELIMITER = ',';
+//
+//	while(ss.getline(TEMP_BUF, MAX_LENGTH_OF_NUMBER, DELIMITER)) {
+//		number += atoi(TEMP_BUF);
+//	}
+//
+//	return number;
+//}
+
 int StringCalculatorClass::add(std::string newString) {
-	int number = 0;
 	stringstream_trace ss;
-	char TEMP_BUF[50];
 
 	//Copy string to stringstream
 	ss << newString;
 
-	const int MAX_LENGTH_OF_NUMBER = 6;
-	const char DELIMITER = ',';
+	int number = 0;
+	int sum = 0;
+	char delimiter;
 
-	while(ss.getline(TEMP_BUF, MAX_LENGTH_OF_NUMBER, DELIMITER)) {
-		number += atoi(TEMP_BUF);
+	while(false == ss.eof()) {
+		ss >> number >> delimiter;
+		sum += number;
 	}
 
-	return number;
+	return sum;
 }
