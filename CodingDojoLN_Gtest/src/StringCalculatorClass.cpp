@@ -54,7 +54,11 @@ int StringCalculatorClass::add(std::string newString) {
 	char delimiter;
 
 	while(false == ss.eof()) {
-		ss >> number >> delimiter;
+		//ss >> number >> delimiter;
+		ss >> number;
+		if('\n' != ss.peek()) {
+			ss >> delimiter;
+		}
 		sum += number;
 	}
 
