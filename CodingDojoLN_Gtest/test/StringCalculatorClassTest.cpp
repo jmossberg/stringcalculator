@@ -64,6 +64,15 @@ TEST_F(StringCalculatorClassTest, CanCallAddWithNewLineDelimiter)
 	ASSERT_EQ(6, result);
 }
 
+TEST_F(StringCalculatorClassTest, SupportDifferentDelimiter)
+{
+	//Exercise
+	int result = myStringCalculatorClass_p->add("//;\n1;7;3");
+
+	//Exercise
+	ASSERT_EQ(11, result);
+}
+
 TEST_F(StringCalculatorClassTest, StringStreamExperiment)
 {
 

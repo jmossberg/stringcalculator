@@ -52,6 +52,13 @@ int StringCalculatorClass::add(std::string newString) {
 	int number = 0;
 	int sum = 0;
 	char delimiter;
+	const int MAX_LENGTH_OF_NUMBER = 6;
+	const char DELIMITER = '\n';
+	char TEMP_BUF[50];
+
+	if('/' == ss.peek()) {
+		ss.getline(TEMP_BUF, MAX_LENGTH_OF_NUMBER, DELIMITER);
+	}
 
 	while(false == ss.eof()) {
 		//ss >> number >> delimiter;
