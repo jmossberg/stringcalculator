@@ -53,30 +53,30 @@ int StringCalculatorClass::add(std::string addString) {
 
 	int number = 0;
 	int sum = 0;
-	bool throwException = false;
-
-	stringstream_trace exceptionMessage;
-	exceptionMessage << "negatives not allowed: ";
 
 	this->checkForNewDelimiter(ss);
 
 	while(false == ss.eof()) {
 		ss >> number;
-		if(number < 0) {
-			throwException = true;
-			exceptionMessage << number << ",";
-		}
+//		if(number < 0) {
+//			throwException = true;
+//			exceptionMessage << number << ",";
+//		}
+
+		this->checkForNegativeNumber(number);
 		sum += number;
 		parseDelimiter(ss);
 	}
 
-	if (throwException) {
-		//remove last comma from exception message
-		std::string exceptionMessageStr = exceptionMessage.str();
-		exceptionMessageStr.resize(exceptionMessageStr.size() - 1);
+	this->throwIfNegativeNumbers();
 
-		throw exceptionMessageStr;
-	}
+//	if (throwException) {
+//		//remove last comma from exception message
+//		std::string exceptionMessageStr = exceptionMessage.str();
+//		exceptionMessageStr.resize(exceptionMessageStr.size() - 1);
+//
+//		throw exceptionMessageStr;
+//	}
 
 	return sum;
 }
@@ -95,5 +95,32 @@ void StringCalculatorClass::parseDelimiter(std::stringstream& ss) {
 	char delimiter;
 	if('\n' != ss.peek()) {
 		ss >> delimiter;
+	}
+}
+
+void StringCalculatorClass::checkForNegativeNumber(int number) {
+	if(number < 0) {
+		throwException = true;
+		myExceptionMessage << number << ",";
+	}
+}
+
+StringCalculatorClass::StringCalculatorClass() {
+	myExceptionMessage << "negatives not allowed: ";
+	throwException = false;
+}
+
+void StringCalculatorClass::throwIfNegativeNumbers() {
+	if (throwException) {
+		//remove last comma from exception message
+		std::string str = myExceptionMessage.str();
+		str.resize(str.size() - 1);
+
+		myExceptionMessage.str("");
+		myExceptionMessage.clear(); // Clear state flags.
+		myExceptionMessage << "negatives not allowed: ";
+		throwException = false;
+
+		throw str;
 	}
 }

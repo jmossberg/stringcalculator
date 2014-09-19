@@ -7,20 +7,16 @@
 class StringCalculatorClass
 {
 public:
+	StringCalculatorClass();
 	int add(std::string addString);
 private:
 	void checkForNewDelimiter(std::stringstream& ss);
 	void parseDelimiter(std::stringstream& ss);
+	void checkForNegativeNumber(int number);
+	void throwIfNegativeNumbers();
+
+	std::stringstream myExceptionMessage;
+	bool throwException;
 };
-
-class myException : public std::exception {
-
-	virtual const char* what() const throw() {
-		std::string message = "negatives not allowed: ";
-		return message.c_str();
-	}
-};
-
-
 
 #endif /* STRINGCALCULATORCLASS_H_ */

@@ -103,27 +103,41 @@ TEST_F(StringCalculatorClassTest, NegativeNumbersThrowExceptionWithMessage)
 	}
 }
 
-TEST_F(StringCalculatorClassTest, StringStreamExperiment)
+TEST_F(StringCalculatorClassTest, NegativeNumbersThrowExceptionTwiceWithMessage)
 {
+	try {
+		//Exercise
+		myStringCalculatorClass_p->add("-1,3,-6");
+		FAIL(); //Fail if we reach this line since we should have thrown an exception
+	}
+	catch (std::string& message) {
+		ASSERT_EQ("negatives not allowed: -1,-6", message);
+	}
 
-	std::stringstream ss;
+	try {
+		//Exercise
+		myStringCalculatorClass_p->add("-1,3,-7");
+		FAIL(); //Fail if we reach this line since we should have thrown an exception
+	}
+	catch (std::string& message) {
+		ASSERT_EQ("negatives not allowed: -1,-7", message);
+	}
+}
 
-	ss << "123\n456";
-	//ss << "123";
+TEST_F(StringCalculatorClassTest, NegativeNumbersThenPositiveNumbers)
+{
+	try {
+		//Exercise
+		myStringCalculatorClass_p->add("-1,3,-6");
+		FAIL(); //Fail if we reach this line since we should have thrown an exception
+	}
+	catch (std::string& message) {
+		ASSERT_EQ("negatives not allowed: -1,-6", message);
+	}
 
-	int number1;
-	int number2;
-	//char delim1;
+    //Exercise
+	int result = myStringCalculatorClass_p->add("3,2");
 
-	//ss >> number1 >> delim1 >> number2;
-	ss >> number1;
-	char c = ss.peek();
-	ss >> number2;
-
-	//Exercise
-	//ASSERT_EQ('\n', delim1);
-	ASSERT_EQ(123, number1);
-	ASSERT_EQ('\n', c);
-	ASSERT_EQ(456, number2);
+	ASSERT_EQ(5,result);
 }
 
