@@ -53,19 +53,29 @@ int StringCalculatorClass::add(std::string addString) {
 
 	int number = 0;
 	int sum = 0;
+	bool throwException = false;
+
+	stringstream_trace exceptionMessage;
+	exceptionMessage << "negatives not allowed: ";
 
 	this->checkForNewDelimiter(ss);
 
 	while(false == ss.eof()) {
 		ss >> number;
 		if(number < 0) {
-			stringstream_trace message;
-			message << "negatives not allowed: ";
-			message << number;
-			throw message.str();
+			throwException = true;
+			exceptionMessage << number << ",";
 		}
 		sum += number;
 		parseDelimiter(ss);
+	}
+
+	if (throwException) {
+		//remove last comma from exception message
+		std::string exceptionMessageStr = exceptionMessage.str();
+		exceptionMessageStr.resize(exceptionMessageStr.size() - 1);
+
+		throw exceptionMessageStr;
 	}
 
 	return sum;

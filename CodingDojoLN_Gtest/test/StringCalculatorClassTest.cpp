@@ -91,6 +91,18 @@ TEST_F(StringCalculatorClassTest, NegativeNumberThrowExceptionWithMessage)
 	}
 }
 
+TEST_F(StringCalculatorClassTest, NegativeNumbersThrowExceptionWithMessage)
+{
+	try {
+		//Exercise
+		myStringCalculatorClass_p->add("-1,3,-6");
+		FAIL(); //Fail if we reach this line since we should have thrown an exception
+	}
+	catch (std::string& message) {
+		ASSERT_EQ("negatives not allowed: -1,-6", message);
+	}
+}
+
 TEST_F(StringCalculatorClassTest, StringStreamExperiment)
 {
 
