@@ -1,5 +1,4 @@
 #include <cstdlib>
-#include <sstream>
 #include <iostream>
 #include "StringCalculatorClass.h"
 
@@ -43,31 +42,39 @@ public:
 //	return number;
 //}
 
-int StringCalculatorClass::add(std::string newString) {
+int StringCalculatorClass::add(std::string addString) {
 	stringstream_trace ss;
 
 	//Copy string to stringstream
-	ss << newString;
+	ss << addString;
 
 	int number = 0;
 	int sum = 0;
-	char delimiter;
-	const int MAX_LENGTH_OF_NUMBER = 6;
+
+	this->checkForNewDelimiter(ss);
+
+	while(false == ss.eof()) {
+		ss >> number;
+		sum += number;
+		parseDelimiter(ss);
+	}
+
+	return sum;
+}
+
+void StringCalculatorClass::checkForNewDelimiter(std::stringstream& ss) {
+	const int MAX_LENGTH_TO_PARSE = 6;
 	const char DELIMITER = '\n';
 	char TEMP_BUF[50];
 
 	if('/' == ss.peek()) {
-		ss.getline(TEMP_BUF, MAX_LENGTH_OF_NUMBER, DELIMITER);
+		ss.getline(TEMP_BUF, MAX_LENGTH_TO_PARSE, DELIMITER);
 	}
+}
 
-	while(false == ss.eof()) {
-		//ss >> number >> delimiter;
-		ss >> number;
-		if('\n' != ss.peek()) {
-			ss >> delimiter;
-		}
-		sum += number;
+void StringCalculatorClass::parseDelimiter(std::stringstream& ss) {
+	char delimiter;
+	if('\n' != ss.peek()) {
+		ss >> delimiter;
 	}
-
-	return sum;
 }
