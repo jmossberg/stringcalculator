@@ -13,6 +13,14 @@ private:
 	void parseDelimiter(std::stringstream& ss);
 };
 
+class myException : public std::exception {
+
+	virtual const char* what() const throw() {
+		std::string message = "negatives not allowed: ";
+		return message.c_str();
+	}
+};
+
 
 
 #endif /* STRINGCALCULATORCLASS_H_ */

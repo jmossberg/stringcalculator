@@ -1,6 +1,9 @@
 #include <cstdlib>
 #include <iostream>
+#include <exception>
 #include "StringCalculatorClass.h"
+
+
 
 
 class istream_trace : public std::istream
@@ -55,6 +58,12 @@ int StringCalculatorClass::add(std::string addString) {
 
 	while(false == ss.eof()) {
 		ss >> number;
+		if(number < 0) {
+			stringstream_trace message;
+			message << "negatives not allowed: ";
+			message << number;
+			throw message.str();
+		}
 		sum += number;
 		parseDelimiter(ss);
 	}

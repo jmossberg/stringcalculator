@@ -73,6 +73,24 @@ TEST_F(StringCalculatorClassTest, SupportDifferentDelimiter)
 	ASSERT_EQ(11, result);
 }
 
+TEST_F(StringCalculatorClassTest, NegativeNumbersThrowException)
+{
+	//Exercise
+	ASSERT_ANY_THROW(myStringCalculatorClass_p->add("-1"));
+}
+
+TEST_F(StringCalculatorClassTest, NegativeNumberThrowExceptionWithMessage)
+{
+	try {
+		//Exercise
+		myStringCalculatorClass_p->add("-1");
+		FAIL(); //Fail if we reach this line since we should have thrown an exception
+	}
+	catch (std::string& message) {
+		ASSERT_EQ("negatives not allowed: -1", message);
+	}
+}
+
 TEST_F(StringCalculatorClassTest, StringStreamExperiment)
 {
 
